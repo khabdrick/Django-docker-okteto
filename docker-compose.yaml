@@ -17,7 +17,7 @@ services:
     command: sh -c "python manage.py runserver 0.0.0.0:8000" 
     
     environment:
-			# The environment variable credetials that is needed 
+      # The environment variable credetials that is needed 
       # in the settings for Postgres.
       - DB_HOST=db
       - DB_NAME=recipe
@@ -29,7 +29,7 @@ services:
   db:
     image: postgres:10-alpine
     environment:
-			# credentials required by postgres:10-alpine
+      # credentials required by postgres:10-alpine
       - POSTGRES_DB=recipe
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=supersecretpassword
