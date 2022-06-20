@@ -11,25 +11,25 @@ services:
       - "8000:8000"
       
     volumes: 
-    # Copy changes made to the project to your image in real-time.
-      - .:/django_recipe_api
+    # Copy changes made to the project to your image working directory as changesare made.
+      - .:/django-docker-okteto
     # Handles the command used to run the project in the Docker container.  
     command: sh -c "python manage.py runserver 0.0.0.0:8000" 
     
     environment:
       # The environment variable credetials that is needed 
-      # in the settings for Postgres.
+      # in django settings for Postgres to work.
       - DB_HOST=db
-      - DB_NAME=recipe
-      - DB_USER=postgres
-      - DB_PASS=supersecretpassword
+      - DB_NAME=database-name
+      - DB_USER=postgres-user
+      - DB_PASS=password2424
     depends_on:
       - db
 
   db:
-    image: postgres:10-alpine
+    image: postgres:10-alpine # pulling Postgress image from Docker hub
     environment:
-      # credentials required by postgres:10-alpine
-      - POSTGRES_DB=recipe
+      # credentials required by postgres image
+      - POSTGRES_DB=contact
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=supersecretpassword
+      - POSTGRES_PASSWORD=password2424
