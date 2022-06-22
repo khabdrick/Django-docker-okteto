@@ -14,15 +14,18 @@ services:
     # Copy changes made to the project to your image working directory as changesare made.
       - .:/django-docker-okteto
     # Handles the command used to run the project in the Docker container.  
-    command: sh -c "python manage.py runserver 0.0.0.0:8080" 
+    command: >
+      sh -c "python manage.py makemigrations &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8080"
     
     environment:
       # The environment variable credetials that is needed 
       # in django settings for Postgres to work.
       - DB_HOST=db
       - DB_NAME=database-name
-      - DB_USER=postgres-user
-      - DB_PASS=password2424
+      - DB_USER=postgres-user1
+      - DB_PASS=nvjfeifejijmf2424
     depends_on:
       - db
 
@@ -30,6 +33,6 @@ services:
     image: postgres:10-alpine # pulling Postgress image from Docker hub
     environment:
       # credentials required by postgres image
-      - POSTGRES_DB=contact
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=password2424
+      - POSTGRES_DB=database-name
+      - POSTGRES_USER=postgres-user1
+      - POSTGRES_PASSWORD=nvjfeifejijmf2424
