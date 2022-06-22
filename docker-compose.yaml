@@ -22,17 +22,17 @@ services:
     environment:
       # The environment variable credetials that is needed 
       # in django settings for Postgres to work.
-      - DB_HOST=db
-      - DB_NAME=database-name
-      - DB_USER=postgres-user1
-      - DB_PASS=nvjfeifejijmf2424
+      - DB_HOST=pg
+      - DB_NAME=app2
+      - DB_USER=postgres3
+      - DB_PASS=supersecretpassword
     depends_on:
-      - db
+      - pg
 
-  db:
+  pg:
     image: postgres:10-alpine # pulling Postgress image from Docker hub
     environment:
       # credentials required by postgres image
-      - POSTGRES_DB=database-name
-      - POSTGRES_USER=postgres-user1
-      - POSTGRES_PASSWORD=nvjfeifejijmf2424
+      - POSTGRES_DB=app2
+      - POSTGRES_USER=postgres3
+      - POSTGRES_PASSWORD=supersecretpassword
